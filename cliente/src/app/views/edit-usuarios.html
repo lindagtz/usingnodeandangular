@@ -1,0 +1,142 @@
+
+
+
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div *ngIf="identity && identity.tipo== 'Admin'" class="page-wrapper">
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">Inicio</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                            <li class="breadcrumb-item active">Usuarios</li>
+                        </ol>
+                    </div>
+                   
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="">
+                    <!-- Column -->
+                    <div class="">
+                        <div class="card">
+                            <div class="card-block">
+                                    <div *ngIf="errorMessage">
+                                            <div class="alert alert-danger">
+                                              <strong> </strong>{{errorMessage}}
+                                            </div>
+                                          </div>
+                                          <div *ngIf="alertMessage">
+                                            <div class="alert alert-success">
+                                              <strong> </strong>{{alertMessage}}
+                                            </div>
+                                          </div>
+                                 <!--formulario aquiii-->
+           <form #formUsuarios="ngForm" (ngSubmit)="onSubmitRegister()" class="form-horizontal form-material">
+                <div class="form-group">
+                    <label class="col-md-12">Nombre: </label>
+                    <div class="col-md-12">
+                        <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="usuarios_registrar.nombre" placeholder="" id="nombre" class="form-control form-control-line">
+                        <span *ngIf="!nombre.valid && nombre.touched">
+                                El nombre es obligatorio
+                              </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="example-email" class="col-md-12">Apellido:</label>
+                    <div class="col-md-12">
+                        <input type="text" #apellidos="ngModel" name="apellidos" [(ngModel)]="usuarios_registrar.apellidos" placeholder="" class="form-control form-control-line" id="apellidos">
+                        <span *ngIf="!apellidos.valid && apellidos.touched">
+                                Los apellidos son obligatorios
+                              </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Password</label>
+                    <div class="col-md-12">
+                        <input type="password" #password="ngModel" name="password" [(ngModel)]="usuarios_registrar.password" required minlength="8" id="password" class="form-control form-control-line">
+                        <span  *ngIf="password.errors?.minlength">
+                                El password debe tener minimo 8 digitos
+                              </span>
+                    
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Tipo de usuario:</label>
+                    <div class="col-md-12">
+                        <select #tipo="ngModel" name="tipo" [(ngModel)]="usuarios_registrar.tipo" id="tipo" class="form-control form-control-line">
+                            <option value="-1">Seleccione tipo...</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Caja Chica">Caja chica</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                        <span *ngIf="">
+                                Eliga un tipo...
+                              </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Correo:</label>
+                    <div class="col-md-12">
+                        <input type="email" #correo="ngModel" name="correo" [(ngModel)]="usuarios_registrar.correo" placeholder="" id="correo" class="form-control form-control-line">
+                        <span *ngIf="!correo.valid && correo.touched">
+                                El nombre es obligatorio
+                              </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-md-12">Nombre de usuario:</label>
+                        <div class="col-sm-12">
+                            <input type="text" #usuario="ngModel" name="usuario" [(ngModel)]="usuarios_registrar.usuario" placeholder="" id="usuario" class="form-control form-control-line">
+                            <span *ngIf="!usuario.valid && usuario.touched">
+                                    El usuario es obligatorio
+                                  </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                    </div>
+                </div>
+            </form>
+                               
+                               
+                  
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="card">
+                            <div class="card-block">
+                              
+
+                            </div>
+                            <div>
+                                <hr class="m-t-0 m-b-0">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+                
+        </div>
+    </div>
+
+    

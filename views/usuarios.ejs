@@ -1,0 +1,471 @@
+<%- include('partials/header.ejs') %>
+
+
+
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                    <%- include('partials/nav.ejs') %>
+
+            
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">Usuarios</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                            <li class="breadcrumb-item active">Usuarios</li>
+                        </ol>
+                    </div>
+                   
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="">
+                    <!-- Column -->
+                   <!-- <div class="col-lg-8 col-md-7">-->
+                        
+                               <!--formulario aquiii-->
+
+
+                                <!--pruebitass -->
+
+                                <!--Pruebas de registro aquiiiiiii-->
+
+            <div ng-app="Prueba">
+                <div ng-controller="Trabajo1">
+                        Registrar nuevo usuario:
+
+			<div class="card">
+
+                            <div class="card-block">
+                        <div class="modal fade" id="modal-container-221606" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">
+                                            Editar Usuarios
+                                        </h5> 
+                                        <button id="cierramodal" type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Nombre: </label>
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="" ng-model="nombreEdit" class="form-control form-control-line">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example-email" class="col-md-12">Apellidos:</label>
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="" class="form-control form-control-line" ng-model="apellidosEdit">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-12">Tipo de usuario:</label>
+                                            <div class="col-md-12">
+                                                <select ng-model="tipoEdit" class="form-control form-control-line">
+                                                    <option value="-1">Seleccione tipo...</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Obras">Obras</option>
+                                                    <option value="Caja Chica">Caja chica</option>
+                                                    <option value="Diesel">Diesel</option>
+                                                    <option value="Mantenimiento">Mantenimiento</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Correo:</label>
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="" ng-model="correoEdit" class="form-control form-control-line">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-12">Nombre de usuario:</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" placeholder="" ng-model="usuarioEdit" class="form-control form-control-line">
+            
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="modal-footer">
+                                         <div class="alert alert-danger"  ng-if="errorEdicion">
+                                             {{errorEdicion}}
+                                        </div>
+                                        <button type="button" ng-click="confirma_edicion()" class="btn btn-primary">
+                                            Editar
+                                        </button> 
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+
+                        <!--OTra modal eliminar-->
+
+                        <div class="modal fade" id="modal-container-221607" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="myModalLabel">
+                                                Confirmación 
+                                            </h5> 
+                                            <button id="cierramodal" type="button" class="close" data-dismiss="modal">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                             <p>¿Estás seguro de eliminar?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                             <div class="alert alert-danger"  ng-if="errorBorrar">
+                                                 {{errorBorrar}}
+                                            </div>
+                                            <button type="button" ng-click="confirma_delete()" class="btn btn-primary">
+                                                Continuar
+                                            </button> 
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            <form class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">Nombre: </label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="" ng-model="nombre" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-email" class="col-md-12">Apellidos:</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="" class="form-control form-control-line" ng-model="apellidos">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Password</label>
+                                <div class="col-md-12">
+                                    <input type="password" ng-model="password" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Tipo de usuario:</label>
+                                <div class="col-md-12">
+                                    <select ng-model="tipo" class="form-control form-control-line">
+                                        <option value="-1">Seleccione tipo...</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Obras">Obras</option>
+                                        <option value="Caja Chica">Caja chica</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Mantenimiento">Mantenimiento</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Correo:</label>
+                                <div class="col-md-12">
+                                    <input type="email" placeholder="" ng-model="correo" class="form-control form-control-line" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-md-12">Nombre de usuario:</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" placeholder="" ng-model="usuario" class="form-control form-control-line">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success" ng-click="Regusuario()">Registrar</button>
+                                </div>
+                            </div>
+                            </form>
+                 <div class="alert alert-danger" ng-if="ErrorRegistrousuario">
+                     <b>Registre todos los datos </b> 
+                   </div>
+                   <div class="alert alert-success" ng-if="RegistroExitoso">
+                       <b>{{RegistroExitoso.message}}</b>
+                      
+                     </div> 
+                    </div> 
+                </div> 
+                     <hr>
+                     Listado de usuarios
+
+                     <div class="card">
+                            <div class="card-block">
+
+                     <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr >
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Usuario</th>
+                
+                                <th>Contraseña</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+
+
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="usuarios in usuarios_consulta">
+                                <td> {{$index+1}}</td>
+                                <td>{{usuarios.nombre}}</td>
+                                <td>{{usuarios.apellidos}}</td>
+                                <td>{{usuarios.correo}}</td>
+                                <td>{{usuarios.usuario}}</td>
+
+                               
+                                <td><button class="btn btn-success">Cambiar contraseña</button></td>
+                                <td><button class="btn btn-warning mdi mdi-settings" href="#modal-container-221606" ng-click="mostrarEdicion([usuarios._id])"  data-toggle="modal"> Editar</button></td>
+                                <td><button class="btn btn-danger mdi mdi-close" href="#modal-container-221607" ng-click="mostrarEliminar([usuarios._id])"  data-toggle="modal"> Eliminar</button></td>
+
+
+                              </tr>
+                            </tbody>
+                          </table>
+                
+                        </div>
+                    
+                    </div>
+                </div>
+   
+               </div>
+             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+                               <form action="/api/registro" method="post" class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Nombre: </label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="" id="nombre" ng-model="nombre" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Apellidos:</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="" class="form-control form-control-line" ng-model="apellidos" id="apellidos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Password</label>
+                                    <div class="col-md-12">
+                                        <input type="password" id="password" ng-model="password" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Tipo de usuario:</label>
+                                    <div class="col-md-12">
+                                        <select id="tipo" ng-model="tipo" class="form-control form-control-line">
+                                            <option value="-1">Seleccione tipo...</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Caja Chica">Caja chica</option>
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="Mantenimiento">Mantenimiento</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Correo:</label>
+                                    <div class="col-md-12">
+                                        <input type="email" placeholder="" id="correo" ng-model="correo" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label class="col-md-12">Nombre de usuario:</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" placeholder="" id="usuario" ng-model="usuario" class="form-control form-control-line">
+    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+
+                                
+                            </div>
+                        </div>
+                   <!-- </div>
+                    <div class="col-lg-4 col-md-5">-->
+                       <!-- <div class="card">
+                            <div class="card-block">
+                                
+                                <h4 class="card-title">Lista de usuarios</h4>
+                               <!-- <h6 class="card-subtitle">Add class <code>.table</code></h6>-->
+                             <!--   <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre</th>
+                                                <th>Apellidos</th>
+                                                <th>Email</th>
+                                                <th>Tipo</th>
+                                                <th>Opciones</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </tbody>
+
+
+
+
+
+
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            </div>-->
+
+                        
+                           <!-- <div>-->
+                                <hr class="m-t-0 m-b-0">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">© 2018 Corporativo GREMILSA </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/js/usuarios.js"></script>
+
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="/assets/plugins/bootstrap/js/tether.min.js"></script>
+        <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="/js/jquery.slimscroll.js"></script>
+        <!--Wave Effects -->
+        <script src="/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <!--Custom JavaScript -->
+        <script src="/js/custom.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- This page plugins -->
+        <!-- ============================================================== -->
+        <!-- chartist chart -->
+        <script src="/assets/plugins/chartist-js/dist/chartist.min.js"></script>
+        <script src="/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+        <!--c3 JavaScript -->
+        <script src="/assets/plugins/d3/d3.min.js"></script>
+        <script src="/assets/plugins/c3-master/c3.min.js"></script>
+        <!-- Chart JS -->
+        <script src="/js/dashboard1.js"></script>
+        </body>
+
+        </html>

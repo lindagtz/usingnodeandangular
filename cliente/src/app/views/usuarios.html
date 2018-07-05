@@ -1,0 +1,99 @@
+
+
+
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div *ngIf="identity && identity.tipo== 'Admin'" class="page-wrapper">
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">Inicio</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                            <li class="breadcrumb-item active">Usuarios</li>
+                        </ol>
+                    </div>
+                   
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="">
+                    <!-- Column -->
+                    <div class="">
+                        <div class="card">
+                            <div class="card-block">
+                                <i class="mdi mdi-account-multiple-plus add-user" [routerLink]="['/guardar-usuario']"></i>
+
+                                 <!--formulario aquiii-->
+              
+                                 <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr >
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Email</th>
+                                            <th>Usuario</th>
+                            
+                                            <th>Contraseña</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+
+
+
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let usuarios of usuarios">
+                                            <td>{{usuarios.nombre}}</td>
+                                            <td>{{usuarios.apellidos}}</td>
+                                            <td>{{usuarios.correo}}</td>
+                                            <td>{{usuarios.usuario}}</td>
+
+                                           
+                                            <td><button class="btn btn-success">Cambiar contraseña</button></td>
+                                            <td><button class="btn btn-warning mdi mdi-settings"> Editar</button></td>
+                                            <td><button class="btn btn-danger mdi mdi-close"> Eliminar</button></td>
+
+
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                            
+                                    </div>
+                  
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="card">
+                            <div class="card-block">
+                                
+
+                            </div>
+                            <div>
+                                <hr class="m-t-0 m-b-0">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+                
+        </div>
+    </div>
+
+    

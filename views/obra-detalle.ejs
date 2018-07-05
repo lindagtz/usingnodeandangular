@@ -1,0 +1,463 @@
+<%- include('partials/header.ejs') %>
+
+
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <%- include('partials/nav.ejs') %>
+
+                <!-- ============================================================== -->
+                <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Page wrapper  -->
+                <!-- ============================================================== -->
+                <div class="page-wrapper">
+                    <!-- ============================================================== -->
+                    <!-- Container fluid  -->
+                    <!-- ============================================================== -->
+                    <div class="container-fluid">
+                        <!-- ============================================================== -->
+                        <!-- Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->
+                        <div class="row page-titles">
+                            <div class="col-md-5 col-8 align-self-center">
+                                <h3 class="text-themecolor">Detalle obra</h3>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript:void(0)">Inicio</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Detalle obra</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Start Page Content -->
+                        <!-- ============================================================== -->
+                        <!-- Row -->
+                        <div class="">
+                            <!-- Column -->
+                            <div class="">
+                                <div ng-app="Obra-detalle" ng-init="parametro='<%= Obra._id %>'">
+                                    <div ng-controller="Trabajo1" >
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>Precio de contrato</th>
+                                                                <th>Anticipo Pagado</th>
+                                                                <th>Amortización anticipo</th>
+                                                                <th>Fondo de garantía</th>
+                                                                <th>Total gastos</th>
+                                                                <th>Fecha de Inicio</th>
+                                                                <th>Fecha límite</th>
+
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                               <!--{{parametro}}-->
+                                                            <tr >
+                                                               <!-- var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                                                                var today  = new Date();
+                                                                
+                                                                console.log(today.toLocaleDateString("en-US")); -->
+                                                                <td><%=Obra.nombre%></td>
+                                                                <td>$<%=(Obra.precio_contrato).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')%></td>
+                                                                <td>$<%=((Obra.porcentaje_anticipo*.100) * Obra.precio_contrato).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %> </td>
+                                                                <td>$</td>
+                                                                <td>$</td>
+                                                                <td>$</td>
+                                                                <td><%=(Obra.fecha_inicio).toLocaleDateString()%></td>
+                                                                <td><%=(Obra.fecha_limite).toLocaleDateString()%></td>
+
+
+
+
+
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--Tablita de obras-->
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <h5>Registro de estimaciones</h5>
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <!--aqui formulario de estimaciones-->
+                                                        <form class="form-horizontal form-material">
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Nombre: </label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" placeholder="" ng-model="nombre" class="form-control form-control-line">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="col-md-12" class="col-md-12">Monto:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" placeholder="$" ng-model="monto_est" class="form-control form-control-line number" id="monto_est" onkeyup="formulas()">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Conceptos extras:</label>
+                                                            <div class="col-md-12">
+                                                                <input value="" ng-model="extras" class="form-control form-control-line number" id="mextra" onkeyup="suma()">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Subtotal:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="number" value="" ng-model="subtotal" class="form-control form-control-line" disabled id="subtotal">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">IVA:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="number" ng-model="iva" class="form-control form-control-line" disabled id="iva">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Total:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="number" ng-model="total" class="form-control form-control-line" disabled id="totalg">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Fecha de inicio:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="date" ng-model="fecha_inicio" class="form-control form-control-line">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Fecha límite:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="date" ng-model="fecha_limite" class="form-control form-control-line">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Cuenta bancaria:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control form-control-line" placeholder="Ingrese los primeros 3 dígitos" id="search-cbs">
+                                                                 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12">
+                                                                <button class="btn btn-success" ng-click="regEstimacion()">Registrar</button>
+                                                            </div>
+                                                        </div>
+                                                          <div class="alert alert-danger" ng-if="ErrorRegistroestimacion">
+                                    <b>Registre todos los datos </b> 
+                                </div>
+                                <div class="alert alert-success" ng-if="RegEstimacionExitoso">
+                                    <b>{{RegEstimacionExitoso.message}}</b>
+                                    
+                                    </div> 
+
+                                </form>
+                                 
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6 ">
+                                                <h5>Registro de gastos</h5>
+
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <!--aqui formulario de gastos-->
+                                                        <form class="form-horizontal form-material">
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Descripción: </label>
+                                                            <div class="col-md-12">
+                                                                <textarea ng-model="descripcion" class="form-control form-control-line" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Fecha de gasto:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="date" value="" ng-model="fecha_gasto" class="form-control form-control-line">
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Monto:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" placeholder="$" ng-model="monto" class="form-control form-control-line nmoney">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Proveedor:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control form-control-line"  placeholder="Ingrese el nombre" id="search-query">
+                                                                 
+                                                            </div>
+                                                        </div>
+                                                     
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">Cuenta bancaria:</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control form-control-line" placeholder="Ingrese los primeros 3 dígitos" id="search-cb">
+                                                                 
+                                                            </div>
+                                                        </div>
+                                                                 
+                                                          
+                                                       
+
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12">
+                                                                <button ng-click="regGasto()" class="btn btn-success">Registrar</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="alert alert-danger" ng-if="ErrorRegistrogasto">
+                                                            <b>Registre todos los datos </b> 
+                                                        </div>
+                                                        <div class="alert alert-success" ng-if="RegistroExitoso">
+                                                            <b>{{RegistroExitoso.message}}</b>
+                                                            
+                                                            </div> 
+                                                            </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!--fin del row-->
+
+                                        <div class="card">
+                                            <div class="card-block">
+
+
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            Estimaciones
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Nombre</th>
+                                                                <th>Monto</th>
+                                                                <th>Conceptos extra</th>
+                                                                <th>Monto + conceptos extra</th>
+                                                                <th>Amortización Anticipo</th>
+                                                                <th>Fondo de garantía</th>
+                                                                <th>Subtotal</th>
+                                                                <th>IVA</th>
+                                                                <th>Total</th>
+                                                                <th>Status</th>
+                                                                <th>Fecha de inicio</th>
+                                                                <th>Fecha final</th>
+
+
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="obras in obras_consulta_detalle">
+                                                                <td> {{$index+1}}</td>
+
+                                                                <td>{{obras.nombre}}</td>
+                                                                <td>{{obras.precio_contrato}}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <!--fin de tabla estimaciones-->
+
+                                        <div class="card">
+                                            <div class="card-block">
+
+
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            Gastos
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Descripción</th>
+                                                                <th>Fecha</th>
+                                                                <th>Proveedor</th>
+                                                                <th>Monto</th>
+
+
+
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="gasto in consulta_gastoObra">
+                                                                <td> {{$index+1}}</td>
+
+                                                                <td>{{gasto.descripcion}}</td>
+                                                                <td>{{gasto.fecha_gasto  | date : format : timezone}}</td>
+                                                                <td>{{gasto.idProveedor.nombre}} | {{gasto.idProveedor.empresa}}</td>
+                                                                <td>{{gasto.monto | currency}}</td>
+
+
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <!--fin de gastos-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+        </div>
+
+        </div>
+
+
+
+
+
+        </div>
+        </div>
+        </div>
+        <!--
+                            <div class="col-lg-4 col-md-5">
+                                <div class="card">
+                                    <div class="card-block">
+                                        
+
+
+
+                                    </div>
+                                    <div>
+                                        <hr class="m-t-0 m-b-0">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        -->
+        <!-- Row -->
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer"> © 2018 Corporativo GREMILSA </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="/js/obra-detalle.js"></script>
+
+        <script src="/js/scripts_index.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="/assets/plugins/bootstrap/js/tether.min.js"></script>
+        <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="/js/jquery.slimscroll.js"></script>
+        <!--Wave Effects -->
+        <script src="/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <!--Custom JavaScript -->
+        <script src="/js/custom.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- This page plugins -->
+        <!-- ============================================================== -->
+        <!-- chartist chart -->
+        <script src="/assets/plugins/chartist-js/dist/chartist.min.js"></script>
+        <script src="/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+        <!--c3 JavaScript -->
+        <script src="/assets/plugins/d3/d3.min.js"></script>
+        <script src="/assets/plugins/c3-master/c3.min.js"></script>
+        <!-- Chart JS -->
+        <script src="/js/dashboard1.js"></script>
+        </body>
+
+        </html>

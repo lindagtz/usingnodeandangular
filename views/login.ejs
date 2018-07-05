@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Constructores demoledores</title>
+    <link rel="icon" type="image/png" href="/img/favicon.ico" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/login.css" />
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js">
+  </script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+   <!-- <script src="main.js"></script>!-->
+
+   
+</head>
+<body>
+    
+        <div id="login-button">
+                <img src="img/login-icon.png">
+                </img>
+              </div>
+              <div id="container">
+                <h1>Log In</h1>
+                <span class="close-btn">
+                  <img src="img/login-close.png"></img>
+                </span>
+              
+                <form id="form_log" action="/login" method="post">
+                  <input type="email" name="correo" placeholder="E-mail" id="correo">
+                  <input type="password" name="password" placeholder="Password" id="password">
+                  <a onclick="login()">Iniciar sesión</a>
+                  <div id="remember-container">
+                    <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked"/>
+                    <span id="remember">Recuérdame</span>
+                    <span id="forgotten">Olvidé mi contraseña</span>
+                  </div>
+              </form>
+              </div>
+              
+              <!-- Forgotten Password Container -->
+              <div id="forgotten-container">
+                 <h1>Contraseña</h1>
+                <span class="close-btn">
+                  <img src="img/login-close.png"></img>
+                </span>
+              
+                <form>
+                  <input type="email" name="correo" placeholder="E-mail">
+                  <a href="#" class="orange-btn">Nueva contraseña</a>
+              </form>
+              </div>
+
+              <script>
+
+        
+                    $('#login-button').click(function(){
+                        $('#login-button').fadeOut("slow",function(){
+                          $("#container").fadeIn();
+                          TweenMax.from("#container", .4, { scale: 0, ease:Sine.easeInOut});
+                          TweenMax.to("#container", .4, { scale: 1, ease:Sine.easeInOut});
+                        });
+                      });
+                      
+                      $(".close-btn").click(function(){
+                        TweenMax.from("#container", .4, { scale: 1, ease:Sine.easeInOut});
+                        TweenMax.to("#container", .4, { left:"0px", scale: 0, ease:Sine.easeInOut});
+                        $("#container, #forgotten-container").fadeOut(800, function(){
+                          $("#login-button").fadeIn(800);
+                        });
+                      });
+                      
+                      /* Forgotten Password */
+                      $('#forgotten').click(function(){
+                        $("#container").fadeOut(function(){
+                          $("#forgotten-container").fadeIn();
+                        });
+                      });
+                              
+                    
+                            //aqui para el login la funcion
+
+
+    function login() {
+
+      var correo = $('#correo').val();
+      var password = $('#password').val();
+      if (correo.length === 0 || password.length === 0) {
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-bottom-full-width",
+          "preventDuplicates": true,
+          "showDuration": "600",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+        alert('no vacios');
+        console.log('no vacios');
+      }
+      $('#form_log').submit();
+    }
+                     
+                            </script>
+              
+    </body>
+</html>
